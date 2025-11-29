@@ -1,20 +1,6 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Scrollo Portfolio
+Moderní, interaktivní prezentace Full-Stack AI projektů. Aplikace je postavená na React 19 a Tailwind CSS s důrazem na plynulé animace (Framer Motion) a "glassmorphism" design.
+Unikátní funkcí je "Live Environment", který dynamicky mění barevné schéma a atmosféru webu podle aktuálního denního času uživatele. Součástí je také integrovaný AI Asistent (ScrolloBot) poháněný modelem Google Gemini 2.5, který návštěvníkům odpovídá na dotazy a aktivně pomáhá s navázáním spolupráce.
 
-# Run and deploy your AI Studio app
-
-This contains everything you need to run your app locally.
-
-View your app in AI Studio: https://ai.studio/apps/drive/11LlL0YIDn055FafRFHFQ8rfMzg_GysC0
-
-## Run Locally
-
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+---
+A high-performance, interactive personal portfolio built with **React 19**, **TypeScript**, and **Tailwind CSS**. Features a time-aware "Live Environment" UI and a fully integrated AI Chatbot powered by the Google Gemini API.
