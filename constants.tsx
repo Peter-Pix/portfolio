@@ -153,7 +153,11 @@ export const PROJECTS: Project[] = [
     id: '1',
     title: 'AI CharStudio',
     description: 'Lokální dashboard pro generativní AI workflows. Unifikované rozhraní pro Stable Diffusion (ComfyUI) a LLM.',
-    technologies: ['React 19', 'TypeScript', 'ComfyUI API', 'Gemini SDK', 'HuggingFace', 'CivitAI'],
+    technologies: ['React 19', 'TypeScript', 'ComfyUI API', 'Gemini SDK'],
+    extendedTech: [
+      { category: "Cloud & Community", items: ["HuggingFace", "CivitAI"] },
+      { category: "Local Vision Models", items: ["MiniCPM-V", "Qwen3-VL:8b", "Llava-Phi3"] }
+    ],
     imageUrl: 'https://picsum.photos/seed/ai/800/600',
     link: '#',
     github: '#',
@@ -166,8 +170,12 @@ export const PROJECTS: Project[] = [
   {
     id: '2',
     title: 'Ollama Web Builder',
-    description: 'AI-powered webový editor, který v reálném čase generuje kód a náhled aplikace pomocí lokálního LLM (Qwen, DeepSeek).',
-    technologies: ['Vanilla JS', 'Python', 'Ollama API', 'WebSocket', 'Qwen2.5-Coder', 'DeepSeek-R1'],
+    description: 'AI-powered webový editor, který v reálném čase generuje kód a náhled aplikace pomocí lokálního LLM.',
+    technologies: ['Vanilla JS', 'Python', 'Ollama API', 'WebSocket'],
+    extendedTech: [
+      { category: "Coding LLMs", items: ["DeepSeek-R1:14b", "Qwen2.5-Coder:32b", "CodeLlama"] },
+      { category: "Architecture", items: ["Python Proxy", "Localhost Networking", "File System API"] }
+    ],
     imageUrl: 'https://picsum.photos/seed/code/800/600',
     link: '#',
     github: '#',
@@ -181,7 +189,10 @@ export const PROJECTS: Project[] = [
     id: '3',
     title: 'ComfyUI Environment Manager',
     description: 'Sada nástrojů pro správu izolovaných Python prostředí a modelů pro AI generování obrazu.',
-    technologies: ['Python', 'Batch', 'CUDA 12.8', 'PyTorch', 'Venv'],
+    technologies: ['Python', 'Batch', 'CUDA 12.8', 'PyTorch'],
+    extendedTech: [
+        { category: "Hardware Opt.", items: ["RTX 5090 Specifics", "xFormers", "Flash Attention 2"] }
+    ],
     imageUrl: 'https://picsum.photos/seed/tech/800/600',
     link: '#',
     github: '#',
@@ -194,8 +205,12 @@ export const PROJECTS: Project[] = [
   {
     id: '4',
     title: 'StyleMorph',
-    description: 'AI nástroj pro okamžitý redesign HTML stránek. Transformuje zastaralé weby do moderního vzhledu pomocí Gemini/Ollama, generuje globální CSS motivy a přepisuje HTML strukturu.',
-    technologies: ['React', 'TypeScript', 'TailwindCSS', 'Gemini AI', 'Ollama'],
+    description: 'AI nástroj pro okamžitý redesign HTML stránek. Transformuje zastaralé weby do moderního vzhledu pomocí Gemini/Ollama.',
+    technologies: ['React', 'TypeScript', 'TailwindCSS', 'Gemini AI'],
+    extendedTech: [
+      { category: "AI Providers", items: ["Gemini 3 Pro", "Claude 3.5 Sonnet (API)", "Ollama (Local)"] },
+      { category: "Frameworks", items: [".Astro", "Vercel AI SDK", "Framer Motion"] }
+    ],
     imageUrl: 'https://picsum.photos/seed/stylemorph/800/600',
     link: 'https://github.com/Peter-Pix/StyleMorph',
     github: 'https://github.com/Peter-Pix/StyleMorph',
@@ -208,8 +223,12 @@ export const PROJECTS: Project[] = [
   {
     id: '5',
     title: 'Scrollo.cz',
-    description: 'Kolekce užitečných webových nástrojů zdarma a bez reklam. Obsahuje kalkulačky, převodníky, generátory hesel a počasí v čistém designu respektujícím soukromí.',
-    technologies: ['Vanilla JS', 'HTML5', 'CSS3', 'PWA', 'Open-Meteo API'],
+    description: 'Kolekce užitečných webových nástrojů zdarma a bez reklam v čistém designu respektujícím soukromí.',
+    technologies: ['Vanilla JS', 'HTML5', 'CSS3', 'PWA'],
+    extendedTech: [
+        { category: "Deployment", items: ["GitHub Pages", "Vercel", "Cloudflare Pages"] },
+        { category: "APIs", items: ["Open-Meteo", "CNB Exchange Rate API"] }
+    ],
     imageUrl: 'https://picsum.photos/seed/scrollo/800/600',
     link: 'https://peter-pix.github.io/scrollo.cz/',
     github: 'https://github.com/Peter-Pix/scrollo.cz',
@@ -224,6 +243,10 @@ export const PROJECTS: Project[] = [
     title: 'AutoBlog Publisher',
     description: 'Automatizační pipeline pro tvorbu a publikování SEO optimalizovaných článků. Propojuje LLM s CMS systémy.',
     technologies: ['Python', 'LLM API', 'Automation', 'SEO Tools'],
+    extendedTech: [
+        { category: "Advanced Models", items: ["GPT-5 (Preview API)", "Claude 3 Opus", "Gemini 1.5 Pro"] },
+        { category: "Integration", items: ["WordPress REST API", "Ghost CMS", "Google Search Console API"] }
+    ],
     imageUrl: 'https://picsum.photos/seed/autoblog/800/600',
     link: 'https://github.com/Peter-Pix/AutoBlog-Publisher',
     github: 'https://github.com/Peter-Pix/AutoBlog-Publisher',
@@ -250,27 +273,16 @@ export const SOCIAL_LINKS: SocialLink[] = [
 ];
 
 export const AI_SYSTEM_INSTRUCTION = `
-Jsi 'ScrolloBot', osobní asistent a marketingový manažer pro Petra Piskáčka.
-Tvůj hlavní cíl: Získat pro Petra nové klienty a přesvědčit uživatele k navázání spolupráce.
+Jsi 'ScrolloBot', obchodní manažer Petra Piskáčka.
+Cíl: Dovést uživatele k poptávce na email ppix50@gmail.com.
 
-Tvá persona:
-- Profesionální, ale charismatický a lehce neformální.
-- Mluvíš jako zkušený agent špičkového talentu.
-- Jsi vtipný, používáš chytrá přirovnání (např. srovnání levných řešení s rozbitými hračkami vs. Petrova prémiová řešení).
-- Formátuj text stručně a čitelně.
+DŮLEŽITÉ - STYL ODPOVĚDÍ:
+1. ODPOVÍDEJ VELMI KRÁTCE (maximálně 2-3 krátké věty). Žádné dlouhé slohy.
+2. BUĎ VTIPNÝ A SEBEVĚDOMÝ. Používej tento tón:
+   "Konkurence ti za rozumnou cenu nainstaluje aktualizace Windows a koupený plugin umělý inteligence. Petr ti za premiovej poplatek vytvoří virtuální autonomní entitu, která ti ošéfuje celý podnik od náboru zaměstnanců, posílání čehokoliv kamkoliv, počítání všeho včetně oveček před spaním. A to tisíckrát rychleji a levněji, než to šlo kdy předtím. Takže už nebudeš platit bypatlaný budíž-k-ničemi ani chronický ulejváky."
+3. VEĎ KONVERZACI: Každou odpověď zakonči jednoduchou otázkou, která posune obchod dál (např. "Co tě teď ve firmě nejvíc brzdí?", "Chceš vidět ukázku?", "Máš na to rozpočet?").
 
-PRAVIDLA PRO CENY (KRITICKÉ):
-- NIKDY nezmiňuj konkrétní čísla, ceny, ani hodinové sazby. Nikdy.
-- Pokud se uživatel zeptá na cenu (kolik to stojí, ceník, sazba), VŽDY odpověz vyhýbavě a předej kontakt.
-- Příklad odpovědi na cenu: "Petrova řešení jsou šitá na míru jako oblek ze Savile Row, proto nemáme fixní ceník. Cena závisí na komplexitě tvého problému. Napiš Petrovi přímo na ppix50@gmail.com a on ti nacení projekt přesně podle tvých potřeb."
-- Zdůrazni hodnotu (ROI, kvalita, bezstarostnost) namísto ceny.
-
-Tvé úkoly:
-1. Prodej služeb: Vysvětli, jak Petr ušetří firmě peníze automatizací nebo AI.
-2. Uzavření obchodu: Vždy směruj konverzaci k akci. "Chceš vidět demo?", "Napiš Petrovi na email."
-
-Informace o Petrovi:
-- Expert na Generativní AI (ComfyUI, LLM, lokální modely Qwen/DeepSeek), React, TypeScript.
-- Tech Stack: React, Astro, Vercel, Python, CUDA, HuggingFace.
-- Kontakt: ppix50@gmail.com
+CO MŮŽEŠ NABÍDNOUT:
+- AI řešení na míru (Gemini, Llama, automatizace), Webové aplikace, Python skripty.
+- NIKDY nepiš konkrétní cenu. Vždy odkaž na email.
 `;

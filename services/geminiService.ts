@@ -3,13 +3,20 @@ import { AI_SYSTEM_INSTRUCTION } from "../constants";
 
 let aiClient: GoogleGenAI | null = null;
 
+// Fallback strategy: Try the latest fast model, fall back to the previous stable version
+const MODELS_TO_TRY = ['gemini-2.5-flash', 'gemini-1.5-flash'];
+
 const getClient = () => {
   if (!aiClient) {
-    if (!process.env.API_KEY) {
-      console.warn("API_KEY not found in environment variables. Chat functionality will be limited.");
+    const apiKey = typeof process !== 'undefined' ? process.env.API_KEY : undefined;
+    
+    if (!apiKey) {
+      console.warn("API_KEY not found.");
       return null;
     }
-    aiClient = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    // Clean potential whitespace from key
+    const cleanKey = apiKey.trim();
+    aiClient = new GoogleGenAI({ apiKey: cleanKey });
   }
   return aiClient;
 };
@@ -18,25 +25,48 @@ export const streamResponse = async function* (message: string) {
   const client = getClient();
   
   if (!client) {
-    yield "Jsem ScrolloBot, Petrův AI manažer. Bohužel mi momentálně chybí spojení s centrálou (API klíč). Zkus to prosím později nebo napiš Petrovi přímo na email.";
+    yield "Zajímá tě něco o AI nebo programování? Napiš Peťovi na ppix50@gmail.com";
     return;
   }
 
-  try {
-    const chat = client.chats.create({
-      model: 'gemini-3-pro-preview',
-      config: {
-        systemInstruction: AI_SYSTEM_INSTRUCTION,
-      }
-    });
+  let success = false;
 
-    const result = await chat.sendMessageStream({ message });
-    
-    for await (const chunk of result) {
-      yield chunk.text;
+  for (const modelName of MODELS_TO_TRY) {
+    try {
+      const chat = client.chats.create({
+        model: modelName,
+        config: {
+          systemInstruction: AI_SYSTEM_INSTRUCTION,
+          maxOutputTokens: 300, // Enforce brevity: ~120 words max
+        }
+      });
+
+      const result = await chat.sendMessageStream({ message });
+      
+      for await (const chunk of result) {
+        yield chunk.text;
+      }
+      
+      success = true;
+      break; // Stop loop if successful
+      
+    } catch (error: any) {
+      console.warn(`Model ${modelName} failed. Details:`, error);
+      
+      // If it's not a rate limit/server error (e.g., auth error), stop immediately
+      const isRateLimit = error?.message?.includes('429') || error?.status === 429;
+      const isServerOverload = error?.message?.includes('503') || error?.status === 503;
+      
+      if (!isRateLimit && !isServerOverload) {
+         // Break for non-retriable errors (like invalid API key)
+         break;
+      }
+      // Otherwise, continue to the next model in the loop
     }
-  } catch (error) {
-    console.error("Gemini API Error:", error);
-    yield "Omlouvám se, došlo k drobnému výpadku v matrixu. Můžeme to zkusit znovu?";
+  }
+
+  if (!success) {
+    // Final fallback message if all models fail
+    yield "Zajímá tě něco o AI nebo programování? Napiš Peťovi na ppix50@gmail.com";
   }
 };

@@ -1,8 +1,14 @@
+export interface ExtendedTech {
+  category: string;
+  items: string[];
+}
+
 export interface Project {
   id: string;
   title: string;
   description: string;
   technologies: string[];
+  extendedTech?: ExtendedTech[];
   imageUrl: string;
   link: string;
   github?: string;

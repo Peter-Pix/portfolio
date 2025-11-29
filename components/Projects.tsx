@@ -4,7 +4,7 @@ import Card from './ui/Card';
 import Modal from './ui/Modal';
 import { PROJECTS } from '../constants';
 import { Project } from '../types';
-import { Github, ExternalLink, Briefcase, Building, Factory } from 'lucide-react';
+import { Github, ExternalLink, Briefcase, Building, Factory, Layers } from 'lucide-react';
 
 const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -65,9 +65,9 @@ const Projects: React.FC = () => {
                     </p>
                 </div>
 
-                {/* Tech Stack */}
+                {/* Primary Tech Stack */}
                 <div className="mb-8 p-5 bg-dark-bg rounded-xl border border-dark-border">
-                    <h4 className="text-sm font-mono text-slate-500 uppercase mb-3">Tech Stack</h4>
+                    <h4 className="text-sm font-mono text-slate-500 uppercase mb-3">Core Tech Stack</h4>
                     <div className="flex flex-wrap gap-2">
                         {selectedProject.technologies.map(tech => (
                             <span key={tech} className="px-3 py-1 bg-accent/5 text-accent border border-accent/10 rounded-md text-sm font-medium">
@@ -76,6 +76,29 @@ const Projects: React.FC = () => {
                         ))}
                     </div>
                 </div>
+
+                {/* Extended Tech Stack (New Section) */}
+                {selectedProject.extendedTech && (
+                    <div className="mb-8 p-5 bg-gradient-to-br from-dark-bg to-dark-surface rounded-xl border border-dark-border/50">
+                        <h4 className="text-sm font-mono text-slate-400 uppercase mb-4 flex items-center gap-2">
+                            <Layers size={14} /> Advanced / Additional Tech
+                        </h4>
+                        <div className="grid gap-4 md:grid-cols-2">
+                            {selectedProject.extendedTech.map((group, idx) => (
+                                <div key={idx}>
+                                    <h5 className="text-xs text-accent-glow font-bold mb-2 uppercase tracking-wider">{group.category}</h5>
+                                    <div className="flex flex-wrap gap-2">
+                                        {group.items.map(item => (
+                                            <span key={item} className="px-2 py-1 bg-white/5 text-slate-300 border border-white/5 rounded text-xs">
+                                                {item}
+                                            </span>
+                                        ))}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
 
                 {/* Use Cases Grid */}
                 {selectedProject.useCases && (
