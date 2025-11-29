@@ -1,20 +1,25 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Scrollo Portfolio 2025 🚀
 
-# Run and deploy your AI Studio app
-
-This contains everything you need to run your app locally.
-
-View your app in AI Studio: https://ai.studio/apps/drive/1WMPB7ywvQenbXHbF90fqsEiU5fXRC6Su
-
-## Run Locally
-
-**Prerequisites:**  Node.js
+A high-performance, interactive personal portfolio built with **React 19**, **TypeScript**, and **Tailwind CSS**. Features a time-aware "Live Environment" UI and a fully integrated AI Chatbot powered by the Google Gemini API.
 
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+## ✨ Key Features
+
+- **🎨 Live Environment Mode:** The application background and lighting effects dynamically react to the user's local time (Morning, Day, Evening, Night).
+- **🤖 Integrated AI Assistant:** Custom chatbot ("ScrolloBot") powered by **Google Gemini 2.5 Flash**. It acts as a sales representative, answering questions about skills and projects in real-time.
+- **⚡ Modern UI/UX:**
+  - Smooth scrolling and parallax effects.
+  - Staggered entrance animations using **Framer Motion**.
+  - Glassmorphism design language with interactive hover states.
+- **📱 Fully Responsive:** Optimized for mobile, tablet, and desktop experiences.
+- **🔍 Modal Portals:** sophisticated project details and service descriptions rendered via React Portals for proper z-index layering and scroll locking.
+
+## 🛠️ Tech Stack
+
+- **Core:** React, TypeScript
+- **Styling:** Tailwind CSS
+- **Animations:** Framer Motion
+- **AI Integration:** Google GenAI SDK (`@google/genai`)
+- **Icons:** Lucide React
+- **Build Tooling:** Vite
+
